@@ -1,0 +1,31 @@
+body {
+  font-family: arial;
+}
+form {
+  border: 1px solid gray;
+  background: #ddd;
+  text-align: center;
+  width: 500px;
+  margin: auto;
+}
+
+form div {
+  margin: 20px auto;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+#submit_button input {
+  border: 1px solid #aaa;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px 15px;
+  background: silver;
+  cursor: pointer;
+}
