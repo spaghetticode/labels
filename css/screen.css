@@ -5,7 +5,7 @@ form {
   border: 1px solid gray;
   background: #ddd;
   text-align: center;
-  width: 500px;
+  width: 660px;
   margin: auto;
 }
 
@@ -18,6 +18,14 @@ label {
   font-size: 12px;
 }
 
+div.page {
+  width: 660px;
+  border: 1px solid gray;
+  margin: 25px auto;
+  overflow: auto;
+  display: none;
+}
+
 #submit_button input {
   border: 1px solid #aaa;
   -moz-border-radius: 10px;
@@ -27,5 +35,18 @@ label {
   font-size: 14px;
   padding: 10px 15px;
   background: silver;
+  cursor: pointer;
+}
+
+div.label {
+  text-transform: capitalize;
+  text-align: center;
+  float: left;
+  width: 220px;
+  margin: 5px 0;
+}
+
+p.desc {
+  color: red;
   cursor: pointer;
 }

@@ -1,17 +1,25 @@
 class Page
-  @build = -> 
-    page = new Page()
+  @new = ->
+    new Page()
+    
+  @show = -> 
+    page = Page.new()
     page.build()
+    page.show()
   
   constructor: ->
     @labels       = []
     @labelsPerRow = 3
     @rowsCount    = 12
     @year         = $('#year').val()
-    @month        = $('#month').val()
+    @month        = Number($('#month').val())
     @designer     = $('#designer').val()
-    @startCount   = $('#start_count').val()
+    @startCount   = Number($('#start_count').val())
     @defaultDesc  = $('#default_desc').val()
+  
+  show: ->
+    $('body').append @toHtml()
+    @html.fadeIn()
     
   build: ->
     labelCount = 0
@@ -20,7 +28,6 @@ class Page
       label = new Label(@optsFor(labelCount))
       @labels.push(label)
       labelCount += 1
-    @
       
   optsFor: (n) ->
     opts =
@@ -32,8 +39,8 @@ class Page
       count:    @startCount + n
   
   toHtml: ->
-    page = $('<div class="page"></div>')
-    page.append label.toHtml() for label in @labels
-    page
+    @html = $('<div class="page"></div>')
+    @html.append label.toHtml() for label in @labels
+    @html
 
 window.Page = Page

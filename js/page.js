@@ -1,31 +1,40 @@
 (function() {
   var Page;
   Page = (function() {
-    Page.build = function() {
+    Page["new"] = function() {
+      return new Page();
+    };
+    Page.show = function() {
       var page;
-      page = new Page();
-      return page.build();
+      page = Page["new"]();
+      page.build();
+      return page.show();
     };
     function Page() {
       this.labels = [];
       this.labelsPerRow = 3;
       this.rowsCount = 12;
       this.year = $('#year').val();
-      this.month = $('#month').val();
+      this.month = Number($('#month').val());
       this.designer = $('#designer').val();
-      this.startCount = $('#start_count').val();
+      this.startCount = Number($('#start_count').val());
       this.defaultDesc = $('#default_desc').val();
     }
+    Page.prototype.show = function() {
+      $('body').append(this.toHtml());
+      return this.html.fadeIn();
+    };
     Page.prototype.build = function() {
-      var label, labelCount, totalLabels;
+      var label, labelCount, totalLabels, _results;
       labelCount = 0;
       totalLabels = this.rowsCount * this.labelsPerRow;
+      _results = [];
       while (labelCount < totalLabels) {
         label = new Label(this.optsFor(labelCount));
         this.labels.push(label);
-        labelCount += 1;
+        _results.push(labelCount += 1);
       }
-      return this;
+      return _results;
     };
     Page.prototype.optsFor = function(n) {
       var opts;
@@ -39,14 +48,14 @@
       };
     };
     Page.prototype.toHtml = function() {
-      var label, page, _i, _len, _ref;
-      page = $('<div class="page"></div>');
+      var label, _i, _len, _ref;
+      this.html = $('<div class="page"></div>');
       _ref = this.labels;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         label = _ref[_i];
-        page.append(label.toHtml());
+        this.html.append(label.toHtml());
       }
-      return page;
+      return this.html;
     };
     return Page;
   })();

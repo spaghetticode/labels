@@ -25,7 +25,7 @@
       $('form').submit(function(event) {
         event.preventDefault();
         if (form.isValid()) {
-          return Page.build();
+          return Page.show();
         } else {
           return alert(form.errors.join('\n'));
         }

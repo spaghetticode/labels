@@ -1,4 +1,7 @@
 class Label
+  @letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
+    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    
   constructor: (opts) ->
     @id       = opts.id # number of label in the batch of pages
     @year     = opts.year # C
@@ -9,11 +12,13 @@ class Label
     @controlCode = @getControlCode()
     
   getControlCode: ->
-    @year + @month + @getDesignerNumber() + @count
+    @getYearNumber() + @month + @getDesignerNumber() + @count
   
   getDesignerNumber: ->
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    letters.indexOf(@designer) + 1
+    Label.letters.indexOf(@designer) + 1
+  
+  getYearNumber: ->
+    Label.letters.indexOf(@year) + 1
     
   toHtml: ->
     label = $('<div class="label" id="' + @id + '"></div>')
@@ -35,5 +40,3 @@ class Label
     if @month < 10 then "0#{@month}" else @month
 
 window.Label = Label
-    
-  

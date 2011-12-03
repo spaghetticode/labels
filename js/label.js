@@ -1,6 +1,7 @@
 (function() {
   var Label;
   Label = (function() {
+    Label.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     function Label(opts) {
       this.id = opts.id;
       this.year = opts.year;
@@ -11,12 +12,13 @@
       this.controlCode = this.getControlCode();
     }
     Label.prototype.getControlCode = function() {
-      return this.year + this.month + this.getDesignerNumber() + this.count;
+      return this.getYearNumber() + this.month + this.getDesignerNumber() + this.count;
     };
     Label.prototype.getDesignerNumber = function() {
-      var letters;
-      letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-      return letters.indexOf(this.designer) + 1;
+      return Label.letters.indexOf(this.designer) + 1;
+    };
+    Label.prototype.getYearNumber = function() {
+      return Label.letters.indexOf(this.year) + 1;
     };
     Label.prototype.toHtml = function() {
       var code, desc, label;

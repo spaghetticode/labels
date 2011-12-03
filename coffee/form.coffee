@@ -13,7 +13,7 @@ class Form
     form = Form.new()
     $('form').submit (event) ->
       event.preventDefault()
-      if form.isValid() then Page.build() else alert(form.errors.join('\n'))
+      if form.isValid() then Page.show() else alert(form.errors.join('\n'))
     form
   
   constructor: ->
