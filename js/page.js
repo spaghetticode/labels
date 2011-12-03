@@ -5,8 +5,10 @@
     Page.show = function() {
       return new this().build().show();
     };
+    Page.count = function() {
+      return $('.page').length;
+    };
     function Page() {
-      this.number = 1;
       this.labelsPerRow = 3;
       this.rowsCount = 12;
       this.labels = [];
@@ -14,7 +16,7 @@
       this.designer = $('#designer').val();
       this.defaultDesc = $('#default_desc').val();
       this.month = Number($('#month').val());
-      this.startCount = Number($('#start_count').val());
+      this.startCount = this.getStartCount();
     }
     Page.prototype.show = function() {
       $('body').append(this.toHtml());
@@ -28,6 +30,9 @@
         }
         return _results;
       }, this));
+    };
+    Page.prototype.getStartCount = function() {
+      return Number($('#start_count').val()) + Page.count() * this.labelsPerRow * this.rowsCount;
     };
     Page.prototype.build = function() {
       var label, labelCount, totalLabels;

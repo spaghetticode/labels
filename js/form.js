@@ -33,7 +33,8 @@
       $('form').submit(function(event) {
         event.preventDefault();
         if (form.isValid()) {
-          return Page.show();
+          Page.show();
+          return form.updateButton();
         } else {
           return alert(form.errors.join('\n'));
         }
@@ -53,6 +54,7 @@
       }
       this.buildYearOptions();
       this.buildMonthOptions();
+      this.updateButton();
     }
     Form.prototype.isValid = function() {
       var field, _i, _len, _ref;
@@ -70,6 +72,12 @@
       } else {
         return false;
       }
+    };
+    Form.prototype.updateButton = function() {
+      var submit, text;
+      submit = $('form [type=submit]');
+      text = "" + (submit.val().remove(/\d+/)) + " " + (Page.count() + 1);
+      return submit.val(text);
     };
     Form.prototype.buildYearOptions = function() {
       var letter, option, year, _i, _len, _ref, _results;

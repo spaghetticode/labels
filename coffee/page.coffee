@@ -2,8 +2,10 @@ class Page
   @show = -> 
     new @().build().show()
   
+  @count = ->
+    $('.page').length
+  
   constructor: ->
-    @number       = 1
     @labelsPerRow = 3
     @rowsCount    = 12
     @labels       = []
@@ -11,7 +13,7 @@ class Page
     @designer     = $('#designer').val()
     @defaultDesc  = $('#default_desc').val()
     @month        = Number $('#month').val()
-    @startCount   = Number $('#start_count').val()
+    @startCount   = @getStartCount()
   
   show: ->
     $('body').append @toHtml()
@@ -20,6 +22,9 @@ class Page
   
   # private
   
+  getStartCount: ->
+    Number($('#start_count').val()) + Page.count() * @labelsPerRow * @rowsCount
+    
   build: ->
     labelCount = 0
     totalLabels = @rowsCount * @labelsPerRow

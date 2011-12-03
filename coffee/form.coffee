@@ -18,7 +18,11 @@ class Form
     form = @new()
     $('form').submit (event) ->
       event.preventDefault()
-      if form.isValid() then Page.show() else alert(form.errors.join('\n'))
+      if form.isValid()
+        Page.show()
+        form.updateButton()
+       else 
+         alert(form.errors.join('\n'))
     form
   
   constructor: ->
@@ -30,16 +34,22 @@ class Form
       @validatableFields.push Field.new(attributes)
     @buildYearOptions()
     @buildMonthOptions()
-    
-  # private
-  
+    @updateButton()
+
   isValid: ->
     @errors = []
     for field in @validatableFields
       @errors.push(field.errors) unless field.isValid()
     @errors = @errors.flatten()
     if @errors.isEmpty() then true else false
-    
+
+  # private
+
+  updateButton: ->
+    submit = $('form [type=submit]')
+    text = "#{submit.val().remove(/\d+/)} #{Page.count() + 1}"
+    submit.val(text)
+        
   buildYearOptions: ->
     year = 2009
     for letter in Form.letters[0..5]
