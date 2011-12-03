@@ -1,32 +1,31 @@
 class Label
-  @letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
-    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  @new = (opts) -> new @(opts)
     
   constructor: (opts) ->
-    @id       = opts.id # number of label in the batch of pages
-    @year     = opts.year # C
-    @month    = opts.month # 4
-    @designer = opts.designer # a
-    @count    = opts.count # 1
-    @desc     = opts.desc # File
+    @id       = opts.id
+    @year     = opts.year
+    @month    = opts.month
+    @designer = opts.designer
+    @count    = opts.count
+    @desc     = opts.desc
     @controlCode = @getControlCode()
     
   getControlCode: ->
     @getYearNumber() + @month + @getDesignerNumber() + @count
   
   getDesignerNumber: ->
-    Label.letters.indexOf(@designer) + 1
+    Form.letters.indexOf(@designer) + 1
   
   getYearNumber: ->
-    Label.letters.indexOf(@year) + 1
+    Form.letters.indexOf(@year) + 1
     
   toHtml: ->
-    label = $('<div class="label" id="' + @id + '"></div>')
+    @html = $('<div class="label"></div>')
     code = $('<p class="code"></p>')
     desc = $('<p class="desc"></p>')
     code.text("#{@year}-#{@formattedMonth()}-#{@designer}-#{@formattedCount()}-#{@controlCode}")
     desc.text(@desc)
-    label.append(code).append(desc)
+    @html.append(code).append(desc).attr(id: @id)
   
   formattedCount: ->
     if @count < 10

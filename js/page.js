@@ -1,40 +1,37 @@
 (function() {
   var Page;
   Page = (function() {
-    Page["new"] = function() {
-      return new Page();
+    Page.build = function() {
+      return new this().build();
     };
     Page.show = function() {
-      var page;
-      page = Page["new"]();
-      page.build();
-      return page.show();
+      return this.build().show();
     };
     function Page() {
-      this.labels = [];
+      this.number = 1;
       this.labelsPerRow = 3;
       this.rowsCount = 12;
+      this.labels = [];
       this.year = $('#year').val();
-      this.month = Number($('#month').val());
       this.designer = $('#designer').val();
-      this.startCount = Number($('#start_count').val());
       this.defaultDesc = $('#default_desc').val();
+      this.month = Number($('#month').val());
+      this.startCount = Number($('#start_count').val());
     }
     Page.prototype.show = function() {
       $('body').append(this.toHtml());
       return this.html.fadeIn();
     };
     Page.prototype.build = function() {
-      var label, labelCount, totalLabels, _results;
+      var label, labelCount, totalLabels;
       labelCount = 0;
       totalLabels = this.rowsCount * this.labelsPerRow;
-      _results = [];
       while (labelCount < totalLabels) {
-        label = new Label(this.optsFor(labelCount));
+        label = Label["new"](this.optsFor(labelCount));
         this.labels.push(label);
-        _results.push(labelCount += 1);
+        labelCount += 1;
       }
-      return _results;
+      return this;
     };
     Page.prototype.optsFor = function(n) {
       var opts;

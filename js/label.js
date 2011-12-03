@@ -1,7 +1,9 @@
 (function() {
   var Label;
   Label = (function() {
-    Label.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    Label["new"] = function(opts) {
+      return new this(opts);
+    };
     function Label(opts) {
       this.id = opts.id;
       this.year = opts.year;
@@ -15,19 +17,21 @@
       return this.getYearNumber() + this.month + this.getDesignerNumber() + this.count;
     };
     Label.prototype.getDesignerNumber = function() {
-      return Label.letters.indexOf(this.designer) + 1;
+      return Form.letters.indexOf(this.designer) + 1;
     };
     Label.prototype.getYearNumber = function() {
-      return Label.letters.indexOf(this.year) + 1;
+      return Form.letters.indexOf(this.year) + 1;
     };
     Label.prototype.toHtml = function() {
-      var code, desc, label;
-      label = $('<div class="label" id="' + this.id + '"></div>');
+      var code, desc;
+      this.html = $('<div class="label"></div>');
       code = $('<p class="code"></p>');
       desc = $('<p class="desc"></p>');
       code.text("" + this.year + "-" + (this.formattedMonth()) + "-" + this.designer + "-" + (this.formattedCount()) + "-" + this.controlCode);
       desc.text(this.desc);
-      return label.append(code).append(desc);
+      return this.html.append(code).append(desc).attr({
+        id: this.id
+      });
     };
     Label.prototype.formattedCount = function() {
       var _ref;

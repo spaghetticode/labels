@@ -1,21 +1,19 @@
 class Page
-  @new = ->
-    new Page()
+  @build = -> new @().build()
     
   @show = -> 
-    page = Page.new()
-    page.build()
-    page.show()
+    @build().show()
   
   constructor: ->
-    @labels       = []
+    @number       = 1
     @labelsPerRow = 3
     @rowsCount    = 12
+    @labels       = []
     @year         = $('#year').val()
-    @month        = Number($('#month').val())
     @designer     = $('#designer').val()
-    @startCount   = Number($('#start_count').val())
     @defaultDesc  = $('#default_desc').val()
+    @month        = Number $('#month').val()
+    @startCount   = Number $('#start_count').val()
   
   show: ->
     $('body').append @toHtml()
@@ -25,9 +23,10 @@ class Page
     labelCount = 0
     totalLabels = @rowsCount * @labelsPerRow
     while labelCount < totalLabels
-      label = new Label(@optsFor(labelCount))
-      @labels.push(label)
+      label = Label.new(@optsFor(labelCount))
+      @labels.push label
       labelCount += 1
+    @
       
   optsFor: (n) ->
     opts =
@@ -40,7 +39,7 @@ class Page
   
   toHtml: ->
     @html = $('<div class="page"></div>')
-    @html.append label.toHtml() for label in @labels
+    @html.append(label.toHtml()) for label in @labels
     @html
 
 window.Page = Page

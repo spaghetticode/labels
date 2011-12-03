@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="lib/jquery.js"></script>
     <script src="lib/sugar.js"></script>
     <script src="js/label.js"></script>
@@ -14,9 +16,9 @@
     <form action="">
       <div id="code_fields">
         <label for="year" size="3">anno:</label>
-        <input type="text" id="year" size="2" />
+        <select id="year"></select>
         <label for="month">mese:</label>
-        <input type="text" id="month" size="2" />
+        <select id="month"></select>
         <label for="designer">disegnatore:</label>
         <input type="text" id="designer" size="2" />
         <label for="start_count">contatore:</label>        
@@ -27,7 +29,7 @@
         <input type="text" id="default_desc" value="File" />
       </div>
       <div id="submit_button">
-        <input type="submit" value="Prepara" />
+        <input type="submit" value="prepara" />
       </div>
     </form>
   </body>
