@@ -1,11 +1,9 @@
 (function() {
   var Page;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   Page = (function() {
-    Page.build = function() {
-      return new this().build();
-    };
     Page.show = function() {
-      return this.build().show();
+      return new this().build().show();
     };
     function Page() {
       this.number = 1;
@@ -20,7 +18,16 @@
     }
     Page.prototype.show = function() {
       $('body').append(this.toHtml());
-      return this.html.fadeIn();
+      return this.html.fadeIn(__bind(function() {
+        var label, _i, _len, _ref, _results;
+        _ref = this.labels;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          label = _ref[_i];
+          _results.push(label.initDescEdit());
+        }
+        return _results;
+      }, this));
     };
     Page.prototype.build = function() {
       var label, labelCount, totalLabels;

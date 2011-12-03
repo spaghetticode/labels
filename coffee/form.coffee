@@ -9,12 +9,10 @@ class Form
     'maggio', 'giugno', 'luglio', 'agosto', 'settembre',
     'ottobre', 'novembre', 'dicembre']
     
-  @fields = [
-    {id: 'year', regexp: /[a-z]/i, range: Form.letters}
+  @fields = [ {id: 'year', regexp: /[a-z]/i, range: Form.letters}
     {id: 'month', regexp: /\d{1,2}/, min: 1, max: 12}
     {id: 'designer', regexp: /[a-z]/i, range: Form.letters}
-    {id: 'start_count', regexp: /\d{1,2}/, min: 1, max: 999}
-  ]
+    {id: 'start_count', regexp: /\d{1,2}/, min: 1, max: 999} ]
   
   @init = ->
     form = @new()
@@ -32,7 +30,9 @@ class Form
       @validatableFields.push Field.new(attributes)
     @buildYearOptions()
     @buildMonthOptions()
-      
+    
+  # private
+  
   isValid: ->
     @errors = []
     for field in @validatableFields

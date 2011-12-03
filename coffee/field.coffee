@@ -17,6 +17,8 @@ class Field
     @validate(value, name)
     if @errors.isEmpty() then true else false
   
+  # private
+  
   validate: (value, name) ->
     if (@regexp and !value.has(@regexp)) or (@range and @range.indexOf(value) < 0)
       @errors.push("#{name} non è valido")

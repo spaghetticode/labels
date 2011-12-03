@@ -10,23 +10,31 @@ class Label
     @desc     = opts.desc
     @controlCode = @getControlCode()
     
-  getControlCode: ->
-    @getYearNumber() + @month + @getDesignerNumber() + @count
-  
-  getDesignerNumber: ->
-    Form.letters.indexOf(@designer) + 1
-  
-  getYearNumber: ->
-    Form.letters.indexOf(@year) + 1
-    
   toHtml: ->
     @html = $('<div class="label"></div>')
-    code = $('<p class="code"></p>')
-    desc = $('<p class="desc"></p>')
+    code  = $('<p class="code"></p>')
+    desc  = $("<p class=\"desc\"></p>")
+    @editable = $("<span>#{@desc}</span>")
     code.text("#{@year}-#{@formattedMonth()}-#{@designer}-#{@formattedCount()}-#{@controlCode}")
-    desc.text(@desc)
+    desc.append(@editable)
     @html.append(code).append(desc).attr(id: @id)
+    
+  initDescEdit: ->
+    @editable.blur  -> $(@).prop(contentEditable: false)    
+    @editable.click -> $(@).prop(contentEditable: true).focus()
+    @editable.keypress (event) -> @blur() if event.keyCode is 13
   
+  # private
+  
+  getControlCode: ->
+    @getYearNumber() + @month + @getDesignerNumber() + @count
+
+  getDesignerNumber: ->
+    Form.letters.indexOf(@designer) + 1
+
+  getYearNumber: ->
+    Form.letters.indexOf(@year) + 1
+      
   formattedCount: ->
     if @count < 10
       "00#{@count}"
@@ -37,5 +45,5 @@ class Label
       
   formattedMonth: ->
     if @month < 10 then "0#{@month}" else @month
-
+        
 window.Label = Label

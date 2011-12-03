@@ -1,8 +1,6 @@
 class Page
-  @build = -> new @().build()
-    
   @show = -> 
-    @build().show()
+    new @().build().show()
   
   constructor: ->
     @number       = 1
@@ -17,8 +15,11 @@ class Page
   
   show: ->
     $('body').append @toHtml()
-    @html.fadeIn()
-    
+    @html.fadeIn =>
+      label.initDescEdit() for label in @labels
+  
+  # private
+  
   build: ->
     labelCount = 0
     totalLabels = @rowsCount * @labelsPerRow
