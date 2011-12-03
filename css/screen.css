@@ -1,6 +1,9 @@
 body {
   font-family: arial;
 }
+
+/* form area */
+
 form {
   border: 1px solid gray;
   background: #ddd;
@@ -18,14 +21,6 @@ label {
   font-size: 12px;
 }
 
-div.page {
-  width: 660px;
-  border: 1px solid gray;
-  margin: 25px auto;
-  overflow: auto;
-  display: none;
-}
-
 #submit_button input {
   border: 1px solid #aaa;
   -moz-border-radius: 10px;
@@ -36,6 +31,16 @@ div.page {
   padding: 10px 15px;
   background: silver;
   cursor: pointer;
+}
+
+/* printable area */
+
+div.page {
+  width: 660px;
+  border: 1px solid gray;
+  margin: 25px auto;
+  overflow: auto;
+  display: none;
 }
 
 div.label {

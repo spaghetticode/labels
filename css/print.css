@@ -1,0 +1,36 @@
+@page {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: arial;
+}
+
+form {
+  display: none;
+}
+
+div.page {
+  border:1px solid red;
+  width: 690px;
+  margin: 10px auto 0;
+  overflow: auto;
+  page-break-after: always;
+}
+
+div.label {
+  text-transform: capitalize;
+  text-align: center;
+  float: left;
+  width: 223px;
+  margin: 5px 0;
+}
+
+div.label p {
+  margin: 13px 0;
+}
+
+p.desc {
+  color: red;
+}
