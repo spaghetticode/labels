@@ -1,15 +1,24 @@
 body {
   font-family: arial;
+  background: #eee;
 }
 
 /* form area */
 
 form {
-  border: 1px solid gray;
-  background: #ddd;
-  text-align: center;
   width: 660px;
   margin: 25px auto;
+  text-align: center;
+  background: -moz-linear-gradient(90deg, #ccc, #fff);
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+  border: 1px solid #aaa;
+  -webkit-box-shadow: 0 0 15px #aaa;
+  -moz-box-shadow: 0 0 15px #aaa;
+  box-shadow: 0 0 15px #aaa;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  color: #444;
 }
 
 form div {
@@ -22,7 +31,7 @@ label {
 }
 
 #submit_button input {
-  border: 1px solid #aaa;
+  border: 1px solid #999;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
@@ -31,16 +40,24 @@ label {
   padding: 10px 15px;
   background: silver;
   cursor: pointer;
+  color: #222;
+	background:-moz-linear-gradient(90deg, #7190ac, #b3c8dc);
+	background:-webkit-gradient(linear, left top, left bottom, from(#b3c8dc), to(#7190ac));
 }
 
 /* printable area */
 
 div.page {
   width: 660px;
-  border: 1px solid gray;
+  border: 1px solid #999;
   margin: 25px auto;
   overflow: auto;
   display: none;
+  -webkit-box-shadow: 0 0 15px #aaa;
+  -moz-box-shadow: 0 0 15px #aaa;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 
 div.label {
@@ -51,7 +68,7 @@ div.label {
   margin: 5px 0;
 }
 
-p.desc {
+p.desc span {
   color: red;
   cursor: pointer;
 }
