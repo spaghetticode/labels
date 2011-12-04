@@ -26,7 +26,8 @@
       }
     };
     Field.prototype.validate = function(value, name) {
-      if ((this.regexp && !value.has(this.regexp)) || (this.range && this.range.indexOf(value) < 0)) {
+      if (this.regexp && !value.has(this.regexp)) {
+        console.log(value.has(this.regexp));
         this.errors.push("" + name + " non è valido");
       }
       if (this.min && Number(value) < this.min) {

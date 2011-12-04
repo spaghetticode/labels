@@ -20,7 +20,7 @@ class Field
   # private
   
   validate: (value, name) ->
-    if (@regexp and !value.has(@regexp)) or (@range and @range.indexOf(value) < 0)
+    if (@regexp and !value.has(@regexp) or (@range and @range.indexOf(value) < 0)
       @errors.push("#{name} non è valido")
     if @min and Number(value) < @min
       @errors.push("#{name} deve essere maggiore di #{@min-1}")
