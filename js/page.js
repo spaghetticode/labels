@@ -49,9 +49,9 @@
       var opts;
       return opts = {
         id: n,
-        year: this.year,
+        year: this.year.toLowerCase(),
         month: this.month,
-        designer: this.designer,
+        designer: this.designer.toLowerCase(),
         desc: this.defaultDesc,
         count: this.startCount + n
       };

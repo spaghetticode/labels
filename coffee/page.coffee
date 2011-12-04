@@ -37,9 +37,9 @@ class Page
   optsFor: (n) ->
     opts =
       id:       n
-      year:     @year
+      year:     @year.toLowerCase()
       month:    @month
-      designer: @designer
+      designer: @designer.toLowerCase()
       desc:     @defaultDesc
       count:    @startCount + n
   
