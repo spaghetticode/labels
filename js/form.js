@@ -76,7 +76,7 @@
     Form.prototype.updateButton = function() {
       var submit, text;
       submit = $('form [type=submit]');
-      text = "" + (submit.val().remove(/\d+/)) + " " + (Page.count() + 1);
+      text = "" + (submit.val().remove(/\d+/)) + (Page.count() + 1);
       return submit.val(text);
     };
     Form.prototype.buildYearOptions = function() {

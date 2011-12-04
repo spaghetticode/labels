@@ -47,7 +47,7 @@ class Form
 
   updateButton: ->
     submit = $('form [type=submit]')
-    text = "#{submit.val().remove(/\d+/)} #{Page.count() + 1}"
+    text = "#{submit.val().remove(/\d+/)}#{Page.count() + 1}"
     submit.val(text)
         
   buildYearOptions: ->
