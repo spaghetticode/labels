@@ -61,7 +61,7 @@ div.page {
 }
 
 div.label {
-  text-transform: capitalize;
+  text-transform: uppercase;
   text-align: center;
   float: left;
   width: 220px;
