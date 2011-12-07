@@ -46,7 +46,7 @@
       this.errors = [];
       this.validatableFields = [];
       this.currentYear = Number(new Date().toString().split(' ')[3]);
-      this.currentMonth = Number(new Date().getMonth());
+      this.nextMonth = this.getNextMonth();
       _ref = Form.fields;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         attributes = _ref[_i];
@@ -87,7 +87,7 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         letter = _ref[_i];
         option = $("<option value=\"" + letter + "\">" + year + "</option>");
-        if (year === this.currentYear) {
+        if (year === this.expectedYear()) {
           option.attr({
             selected: true
           });
@@ -105,7 +105,7 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         name = _ref[_i];
         option = $("<option value=\"" + (i + 1) + "\">" + name + "</option>");
-        if (i === this.currentMonth) {
+        if (i === this.nextMonth) {
           option.attr({
             selected: true
           });
@@ -114,6 +114,19 @@
         _results.push(i += 1);
       }
       return _results;
+    };
+    Form.prototype.expectedYear = function() {
+      if (this.nextMonth !== 0) {
+        return this.currentYear;
+      } else {
+        return this.currentYear + 1;
+      }
+    };
+    Form.prototype.getNextMonth = function() {
+      var current, next;
+      current = new Date().getMonth();
+      next = current === 11 ? 0 : current + 1;
+      return Number(next);
     };
     return Form;
   })();

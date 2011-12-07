@@ -29,7 +29,7 @@ class Form
     @errors = []
     @validatableFields = []
     @currentYear = Number(new Date().toString().split(' ')[3])
-    @currentMonth = Number(new Date().getMonth())
+    @nextMonth = @getNextMonth()
     for attributes in Form.fields
       @validatableFields.push Field.new(attributes)
     @buildYearOptions()
@@ -54,7 +54,7 @@ class Form
     year = 2009
     for letter in Form.letters[0..5]
       option = $("<option value=\"#{letter}\">#{year}</option>")
-      option.attr(selected: true) if year is @currentYear
+      option.attr(selected: true) if year is @expectedYear()
       $('#year').append(option)
       year += 1
 
@@ -62,8 +62,16 @@ class Form
     i = 0
     for name in Form.months
       option = $("<option value=\"#{i+1}\">#{name}</option>")
-      option.attr(selected: true) if i is @currentMonth
+      option.attr(selected: true) if i is @nextMonth
       $('#month').append(option)
       i += 1
+      
+  expectedYear: ->
+    if @nextMonth isnt 0 then @currentYear else @currentYear + 1
+  
+  getNextMonth: ->
+    current = new Date().getMonth()
+    next = if current is 11 then 0 else current + 1
+    Number(next)
     
 window.Form = Form

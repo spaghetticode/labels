@@ -52,7 +52,7 @@
       return Form.letters.indexOf(this.year) + 1;
     };
     Label.prototype.formattedMonth = function() {
-      if (this.month > 10) {
+      if (this.month > 9) {
         return this.month;
       } else {
         return "0" + this.month;
