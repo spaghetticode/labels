@@ -46,7 +46,7 @@
       var attributes, _i, _len, _ref;
       this.errors = [];
       this.validatableFields = [];
-      this.currentYear = Number(new Date().toString().split(' ')[3]);
+      this.currentYear = this.getYear();
       this.nextMonth = this.getNextMonth();
       _ref = Form.fields;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -135,6 +135,11 @@
       current = new Date().getMonth();
       next = current === 11 ? 0 : current + 1;
       return Number(next);
+    };
+    Form.prototype.getYear = function() {
+      var index;
+      index = $.browser.msie ? 5 : 3;
+      return Number(new Date().toString().split(' ')[index]);
     };
     return Form;
   })();

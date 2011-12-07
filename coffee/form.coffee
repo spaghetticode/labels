@@ -28,7 +28,7 @@ class Form
   constructor: ->
     @errors = []
     @validatableFields = []
-    @currentYear = Number(new Date().toString().split(' ')[3])
+    @currentYear = @getYear()
     @nextMonth = @getNextMonth()
     for attributes in Form.fields
       @validatableFields.push Field.new(attributes)
@@ -79,5 +79,9 @@ class Form
     current = new Date().getMonth()
     next = if current is 11 then 0 else current + 1
     Number(next)
+    
+  getYear: ->
+    index = if $.browser.msie then 5 else 3
+    Number(new Date().toString().split(' ')[index])
     
 window.Form = Form
