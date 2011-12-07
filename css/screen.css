@@ -71,4 +71,5 @@ div.label {
 p.desc span {
   color: red;
   cursor: pointer;
+  text-transform: capitalize;
 }

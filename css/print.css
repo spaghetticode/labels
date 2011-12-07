@@ -7,35 +7,38 @@ body {
   margin: 0;
   padding: 0;
   font-family: arial;
+  font-size: 17pt;
 }
 
 form {
   display: none;
 }
 
-div.page {
-  border: none;
-  width: 690px;
-  margin: 10px auto 0 auto;
+.page {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   overflow: auto;
   page-break-after: always;
 }
 
 div.label {
-  text-align: center;
+  width: 33%;
+  height: 65pt;
   float: left;
-  width: 223px;
-  margin: 5px 0;
+  overflow: hidden;
+  text-align: center;
 }
 
 .code {
   text-transform: uppercase;
 }
 
-div.label p {
-  margin: 13px 0;
+div.label p.code {
+  margin: 13pt 0 0;
 }
 
-p.desc {
+div.label p.desc {
   color: red;
+  margin: 0;
 }
