@@ -15,7 +15,7 @@ class Label
     code  = $('<p class="code"></p>')
     desc  = $("<p class=\"desc\"></p>")
     @editable = $("<span>#{@desc}</span>")
-    code.text("#{@year}-#{@formattedMonth()}-#{@designer}-#{@formattedCount()}-#{@controlCode}")
+    code.text("#{@year}-#{@formattedMonth()}-#{@designer}-#{@count}-#{@controlCode}")
     desc.append(@editable)
     @html.append(code).append(desc).attr(id: @id)
     
@@ -34,14 +34,6 @@ class Label
 
   getYearNumber: ->
     Form.letters.indexOf(@year) + 1
-      
-  formattedCount: ->
-    if @count < 10
-      "00#{@count}"
-    else if 10 < @count < 100
-      "0#{@count}"
-    else
-      "#{@count}"
       
   formattedMonth: ->
     if @month < 10 then "0#{@month}" else @month
