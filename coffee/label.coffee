@@ -15,7 +15,7 @@ class Label
     code  = $('<p class="code"></p>')
     desc  = $("<p class=\"desc\"></p>")
     @editable = $("<span>#{@desc}</span>")
-    code.text("#{@year}-#{@month}-#{@designer}-#{@count}-#{@controlCode}")
+    code.text("#{@year}-#{@formattedMonth()}-#{@designer}-#{@count}-#{@controlCode}")
     desc.append(@editable)
     @html.append(code).append(desc).attr(id: @id)
     
@@ -27,12 +27,15 @@ class Label
   # private
   
   getControlCode: ->
-    @getYearNumber() + @month + @getDesignerNumber() + @count
+    @yearNumber() + @month + @designerNumber() + @count
 
-  getDesignerNumber: ->
+  designerNumber: ->
     Form.letters.indexOf(@designer) + 1
 
-  getYearNumber: ->
+  yearNumber: ->
     Form.letters.indexOf(@year) + 1
+    
+  formattedMonth : ->
+    if @month > 9 then @month else "0#{@month}"
         
 window.Label = Label

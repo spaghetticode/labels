@@ -19,7 +19,7 @@
       code = $('<p class="code"></p>');
       desc = $("<p class=\"desc\"></p>");
       this.editable = $("<span>" + this.desc + "</span>");
-      code.text("" + this.year + "-" + this.month + "-" + this.designer + "-" + this.count + "-" + this.controlCode);
+      code.text("" + this.year + "-" + (this.formattedMonth()) + "-" + this.designer + "-" + this.count + "-" + this.controlCode);
       desc.append(this.editable);
       return this.html.append(code).append(desc).attr({
         id: this.id
@@ -43,13 +43,20 @@
       });
     };
     Label.prototype.getControlCode = function() {
-      return this.getYearNumber() + this.month + this.getDesignerNumber() + this.count;
+      return this.yearNumber() + this.month + this.designerNumber() + this.count;
     };
-    Label.prototype.getDesignerNumber = function() {
+    Label.prototype.designerNumber = function() {
       return Form.letters.indexOf(this.designer) + 1;
     };
-    Label.prototype.getYearNumber = function() {
+    Label.prototype.yearNumber = function() {
       return Form.letters.indexOf(this.year) + 1;
+    };
+    Label.prototype.formattedMonth = function() {
+      if (this.month > 10) {
+        return this.month;
+      } else {
+        return "0" + this.month;
+      }
     };
     return Label;
   })();
