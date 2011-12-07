@@ -35,6 +35,7 @@ class Form
     @buildYearOptions()
     @buildMonthOptions()
     @updateButton()
+    @initEvents()
 
   isValid: ->
     @errors = []
@@ -44,6 +45,11 @@ class Form
     if @errors.isEmpty() then true else false
 
   # private
+  
+  initEvents: -> 
+    $('#designer').change =>
+      $('.page').remove()
+      @updateButton()
 
   updateButton: ->
     submit = $('form [type=submit]')

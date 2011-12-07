@@ -1,5 +1,6 @@
 (function() {
   var Form;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   Form = (function() {
     Form["new"] = function() {
       return new this();
@@ -55,6 +56,7 @@
       this.buildYearOptions();
       this.buildMonthOptions();
       this.updateButton();
+      this.initEvents();
     }
     Form.prototype.isValid = function() {
       var field, _i, _len, _ref;
@@ -72,6 +74,12 @@
       } else {
         return false;
       }
+    };
+    Form.prototype.initEvents = function() {
+      return $('#designer').change(__bind(function() {
+        $('.page').remove();
+        return this.updateButton();
+      }, this));
     };
     Form.prototype.updateButton = function() {
       var submit, text;
