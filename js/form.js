@@ -19,8 +19,7 @@
         max: 12
       }, {
         id: 'designer',
-        regexp: /[a-z]/i,
-        range: Form.letters
+        regexp: /[a-z]/i
       }, {
         id: 'start_count',
         regexp: /\d{1,2}/,

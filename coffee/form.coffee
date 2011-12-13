@@ -11,7 +11,7 @@ class Form
     
   @fields = [ {id: 'year', regexp: /[a-z]/i, range: Form.letters}
     {id: 'month', regexp: /\d{1,2}/, min: 1, max: 12}
-    {id: 'designer', regexp: /[a-z]/i, range: Form.letters}
+    {id: 'designer', regexp: /[a-z]/i}
     {id: 'start_count', regexp: /\d{1,2}/, min: 1, max: 999} ]
   
   @init = ->
