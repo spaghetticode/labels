@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: arial;
+  font-size: 20pt;
+}
+
 div.label {
   height: 70pt;
+}
+
+div.label p.code {
+  margin: 10pt 0 0;
 }
