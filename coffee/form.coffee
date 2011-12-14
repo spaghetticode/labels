@@ -47,7 +47,7 @@ class Form
   # private
   
   initEvents: -> 
-    $('#designer').change =>
+    $('.reset-field').change =>
       $('.page').remove()
       @updateButton()
 

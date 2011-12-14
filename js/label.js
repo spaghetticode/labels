@@ -19,7 +19,7 @@
       code = $('<p class="code"></p>');
       desc = $("<p class=\"desc\"></p>");
       this.editable = $("<span>" + this.desc + "</span>");
-      code.text("" + this.year + "-" + (this.formattedMonth()) + "-" + this.designer + "-" + this.count + "-" + this.controlCode);
+      code.text("" + this.year + "-" + (this.formattedMonth()) + "-" + (this.formattedDesigner()) + "-" + this.count + "-" + this.controlCode);
       desc.append(this.editable);
       return this.html.append(code).append(desc).attr({
         id: this.id
@@ -50,6 +50,9 @@
     };
     Label.prototype.yearNumber = function() {
       return Form.letters.indexOf(this.year) + 1;
+    };
+    Label.prototype.formattedDesigner = function() {
+      return this.designer.toUpperCase();
     };
     Label.prototype.formattedMonth = function() {
       if (this.month > 9) {

@@ -75,7 +75,7 @@
       }
     };
     Form.prototype.initEvents = function() {
-      return $('#designer').change(__bind(function() {
+      return $('.reset-field').change(__bind(function() {
         $('.page').remove();
         return this.updateButton();
       }, this));
