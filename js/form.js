@@ -2,8 +2,8 @@
   var Form;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   Form = (function() {
-    Form["new"] = function() {
-      return new this();
+    Form.init = function() {
+      return new this().init();
     };
     Form.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     Form.months = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
@@ -27,40 +27,17 @@
         max: 999
       }
     ];
-    Form.init = function() {
-      var form;
-      form = this["new"]();
-      $('form').submit(function(event) {
-        event.preventDefault();
-        if (form.isValid()) {
-          Page.show();
-          return form.updateButton();
-        } else {
-          return alert(form.errors.join('\n'));
-        }
-      });
-      return form;
-    };
     function Form() {
-      var attributes, _i, _len, _ref;
+      this.fields = [];
       this.errors = [];
-      this.validatableFields = [];
-      this.currentYear = this.getYear();
+      this.element = $('form');
+      this.thisYear = this.getYear();
       this.nextMonth = this.getNextMonth();
-      _ref = Form.fields;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        attributes = _ref[_i];
-        this.validatableFields.push(Field["new"](attributes));
-      }
-      this.buildYearOptions();
-      this.buildMonthOptions();
-      this.updateButton();
-      this.initEvents();
     }
     Form.prototype.isValid = function() {
       var field, _i, _len, _ref;
       this.errors = [];
-      _ref = this.validatableFields;
+      _ref = this.fields;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         field = _ref[_i];
         if (!field.isValid()) {
@@ -74,22 +51,52 @@
         return false;
       }
     };
-    Form.prototype.initEvents = function() {
-      return $('.reset-field').change(__bind(function() {
+    Form.prototype.init = function() {
+      this.buildYearOptions();
+      this.buildMonthOptions();
+      this.updateButton();
+      this.initFields();
+      this.initSubmit();
+      return this.initReset();
+    };
+    Form.prototype.initFields = function() {
+      var attributes, _i, _len, _ref, _results;
+      _ref = Form.fields;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        attributes = _ref[_i];
+        _results.push(this.fields.push(Field["new"](attributes)));
+      }
+      return _results;
+    };
+    Form.prototype.initSubmit = function() {
+      return this.element.submit(__bind(function(event) {
+        event.preventDefault();
+        if (this.isValid()) {
+          Page.show();
+          return this.updateButton();
+        } else {
+          return alert(this.errors.join('\n'));
+        }
+      }, this));
+    };
+    Form.prototype.initReset = function() {
+      return this.element.find('.reset-field').change(__bind(function() {
         $('.page').remove();
         return this.updateButton();
       }, this));
     };
     Form.prototype.updateButton = function() {
       var submit, text;
-      submit = $('form [type=submit]');
+      submit = this.element.find('[type=submit]');
       text = "" + (submit.val().remove(/\d+/)) + (Page.count() + 1);
       return submit.val(text);
     };
     Form.prototype.buildYearOptions = function() {
-      var letter, option, year, _i, _len, _ref, _results;
+      var index, letter, option, year, _i, _len, _ref, _results;
       year = 2009;
-      _ref = Form.letters.slice(0, 6);
+      index = this.thisYear + 2 - 2009;
+      _ref = Form.letters.slice(0, (index + 1) || 9e9);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         letter = _ref[_i];
@@ -124,9 +131,9 @@
     };
     Form.prototype.expectedYear = function() {
       if (this.nextMonth !== 0) {
-        return this.currentYear;
+        return this.thisYear;
       } else {
-        return this.currentYear + 1;
+        return this.thisYear + 1;
       }
     };
     Form.prototype.getNextMonth = function() {

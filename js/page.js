@@ -35,12 +35,11 @@
       return Number($('#start_count').val()) + Page.count() * this.labelsPerRow * this.rowsCount;
     };
     Page.prototype.build = function() {
-      var label, labelCount, totalLabels;
+      var labelCount, totalLabels;
       labelCount = 0;
       totalLabels = this.rowsCount * this.labelsPerRow;
       while (labelCount < totalLabels) {
-        label = Label["new"](this.optsFor(labelCount));
-        this.labels.push(label);
+        this.labels.push(Label["new"](this.optsFor(labelCount)));
         labelCount += 1;
       }
       return this;
