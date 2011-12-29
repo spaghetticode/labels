@@ -7,9 +7,9 @@
     function Label(opts) {
       this.id = opts.id;
       this.year = opts.year;
-      this.month = opts.month;
+      this.month = Number(opts.month);
       this.designer = opts.designer;
-      this.count = opts.count;
+      this.count = Number(opts.count);
       this.desc = opts.desc;
       this.controlCode = this.getControlCode();
     }

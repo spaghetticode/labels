@@ -4,9 +4,9 @@ class Label
   constructor: (opts) ->
     @id       = opts.id
     @year     = opts.year
-    @month    = opts.month
+    @month    = Number(opts.month)
     @designer = opts.designer
-    @count    = opts.count
+    @count    = Number(opts.count)
     @desc     = opts.desc
     @controlCode = @getControlCode()
 

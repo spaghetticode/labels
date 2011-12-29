@@ -19,6 +19,11 @@
         return expect(label[this]).toEqual(opts[this]);
       });
     });
+    it('should not matter if month and count are strings', function() {
+      opts.month = '1';
+      opts.count = '12';
+      return expect(Label["new"](opts).controlCode).toEqual(label.controlCode);
+    });
     it('should calculate control code', function() {
       return expect(label.controlCode).toBeTruthy();
     });

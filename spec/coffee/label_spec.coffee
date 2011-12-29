@@ -18,6 +18,11 @@ describe 'Label', ->
     ['id', 'year', 'month', 'designer', 'count', 'desc'].each ->
       expect(label[this]).toEqual opts[this]
 
+  it 'should not matter if month and count are strings', ->
+    opts.month = '1'
+    opts.count = '12'
+    expect(Label.new(opts).controlCode).toEqual label.controlCode
+
   it 'should calculate control code', ->
     expect(label.controlCode).toBeTruthy()
 
