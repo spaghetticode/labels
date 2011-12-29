@@ -11,23 +11,31 @@
       this.min = opts.min;
       this.max = opts.max;
       this.range = opts.range;
+      this.element = $("#" + this.id);
     }
     Field.prototype.isValid = function() {
-      var field, name, value;
       this.errors = [];
-      field = $("#" + this.id);
-      value = field.val();
-      name = field.prev('label').text().compact().remove(':').capitalize();
-      this.validate(value, name);
+      this.validate(this.value(), this.name());
       if (this.errors.isEmpty()) {
         return true;
       } else {
         return false;
       }
     };
+    Field.prototype.value = function() {
+      return this.element.val();
+    };
+    Field.prototype.name = function() {
+      return this.element.prev('label').text().compact().remove(':').capitalize();
+    };
     Field.prototype.validate = function(value, name) {
       if ((this.regexp && !value.has(this.regexp)) || (this.range && this.range.indexOf(value) < 0)) {
         this.errors.push("" + name + " non è valido");
+      }
+      if (this.min || this.max) {
+        if (isNaN(Number(value))) {
+          this.errors.push("" + name + " deve essere un numero");
+        }
       }
       if (this.min && Number(value) < this.min) {
         this.errors.push("" + name + " deve essere maggiore di " + (this.min - 1));
