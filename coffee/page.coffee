@@ -19,6 +19,7 @@ class Page
     $('body').append @toHtml()
     @html.fadeIn =>
       label.initDescEdit() for label in @labels
+    @
 
   # private
 

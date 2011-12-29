@@ -20,7 +20,7 @@
     }
     Page.prototype.show = function() {
       $('body').append(this.toHtml());
-      return this.html.fadeIn(__bind(function() {
+      this.html.fadeIn(__bind(function() {
         var label, _i, _len, _ref, _results;
         _ref = this.labels;
         _results = [];
@@ -30,6 +30,7 @@
         }
         return _results;
       }, this));
+      return this;
     };
     Page.prototype.getStartCount = function() {
       return Number($('#start_count').val()) + Page.count() * this.labelsPerRow * this.rowsCount;

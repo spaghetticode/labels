@@ -1,3 +1,5 @@
+jasmine.getFixtures().fixturesPath = 'fixtures'
+
 beforeEach(function() {
   this.addMatchers({
     toBeEmpty: function() {
