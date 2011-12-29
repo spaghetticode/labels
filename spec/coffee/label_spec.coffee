@@ -8,7 +8,7 @@ describe 'Label', ->
     opts =
       id: '1'
       year: 'a'
-      month: '1'
+      month: 1
       designer: 'c'
       count: 12
       desc: 'File'
@@ -21,6 +21,9 @@ describe 'Label', ->
   it 'should calculate control code', ->
     expect(label.controlCode).toBeTruthy()
 
+  it 'should have expected controlCode', ->
+    expect(label.controlCode).toEqual 17
+
   it 'should have expected designerNumber', ->
     expect(label.designerNumber()).toEqual 3
 
@@ -32,3 +35,21 @@ describe 'Label', ->
 
   it 'should have expected formattedYear', ->
     expect(label.formattedYear()).toEqual 'A'
+
+  it 'should have expected formattedMonth', ->
+    expect(label.formattedMonth()).toEqual '01'
+
+  it 'should have expected yearNumber', ->
+    expect(label.yearNumber()).toEqual 1
+
+  it 'should have expected designerNumber', ->
+    expect(label.designerNumber()).toEqual 3
+
+  it 'should have expected code', ->
+    expect(label.code()).toEqual 'A-01-C-12-17'
+
+  describe 'Label.new', ->
+    it 'should create a new label', ->
+      expect(Label.new(opts)).toEqual new Label(opts)
+
+  # TODO test events and jquery/interface stuff

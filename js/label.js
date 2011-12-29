@@ -19,7 +19,7 @@
       code = $('<p class="code"></p>');
       desc = $("<p class=\"desc\"></p>");
       this.editable = $("<span>" + this.desc + "</span>");
-      code.text("" + (this.formattedYear()) + "-" + (this.formattedMonth()) + "-" + (this.formattedDesigner()) + "-" + this.count + "-" + this.controlCode);
+      code.text(this.code());
       desc.append(this.editable);
       return this.html.append(code).append(desc).attr({
         id: this.id
@@ -41,6 +41,9 @@
           return this.blur();
         }
       });
+    };
+    Label.prototype.code = function() {
+      return "" + (this.formattedYear()) + "-" + (this.formattedMonth()) + "-" + (this.formattedDesigner()) + "-" + this.count + "-" + this.controlCode;
     };
     Label.prototype.getControlCode = function() {
       return this.yearNumber() + this.month + this.designerNumber() + this.count;
