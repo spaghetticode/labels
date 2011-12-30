@@ -29,9 +29,7 @@
     });
     describe('when today is 20 december 2011', function() {
       beforeEach(function() {
-        form.today = function() {
-          return new Date('20 Dec 2011');
-        };
+        spyOn(form, 'today').andReturn(new Date('20 Dec 2011'));
         form.thisYear = form.getYear();
         return form.nextMonth = form.getNextMonth();
       });
@@ -74,9 +72,7 @@
     });
     describe('when today is 10 January 2012', function() {
       beforeEach(function() {
-        form.today = function() {
-          return new Date('10 Jan 2012');
-        };
+        spyOn(form, 'today').andReturn(new Date('10 Jan 2012'));
         form.thisYear = form.getYear();
         return form.nextMonth = form.getNextMonth();
       });
@@ -137,6 +133,15 @@
       return it('should have 1 as page number', function() {
         form.updateButton();
         return expect(form.submitButton.val()).toInclude('1');
+      });
+    });
+    describe('init()', function() {
+      return it('should call expected methods', function() {
+        return ['buildYearOptions', 'buildMonthOptions', 'updateButton', 'initFields', 'initSubmit', 'initReset'].each(function(method) {
+          spyOn(form, method);
+          form.init();
+          return expect(form[method]).toHaveBeenCalled();
+        });
       });
     });
     describe('submitting a valid page', function() {

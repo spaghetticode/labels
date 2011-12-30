@@ -31,12 +31,11 @@ describe 'Page', ->
       expect(Page.count()).toBe 1
 
     it 'startCount should be 37', ->
-      page = Page.show()
-      expect(page.startCount).toBe 37
+      newPage = Page.show()
+      expect(newPage.startCount).toBe 37
 
   describe 'build()', ->
     it 'should create labels', ->
-      expect(page.labels.length).toBe 0
       expect(page.build().labels.length).toBe 36
 
   describe 'optsFor()', ->
@@ -56,13 +55,14 @@ describe 'Page', ->
       expect(page.optsFor(3).count).toBe 4
 
   describe 'toHtml()', ->
+    html = null
+
     beforeEach ->
-      @html = page.build().toHtml()
+      html = page.build().toHtml()
 
     it 'should include 36 labels', ->
-      labelCount = @html.find('.label').length
+      labelCount = html.find('.label').length
       expect(labelCount).toBe 36
 
-    it 'should have page class', ->
-      klass = @html.attr('class')
-      expect(klass).toBe 'page'
+    it 'should have page html class', ->
+      expect(html.attr('class')).toBe 'page'

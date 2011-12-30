@@ -30,13 +30,13 @@
         return expect(Page.count()).toBe(1);
       });
       return it('startCount should be 37', function() {
-        page = Page.show();
-        return expect(page.startCount).toBe(37);
+        var newPage;
+        newPage = Page.show();
+        return expect(newPage.startCount).toBe(37);
       });
     });
     describe('build()', function() {
       return it('should create labels', function() {
-        expect(page.labels.length).toBe(0);
         return expect(page.build().labels.length).toBe(36);
       });
     });
@@ -58,18 +58,18 @@
       });
     });
     return describe('toHtml()', function() {
+      var html;
+      html = null;
       beforeEach(function() {
-        return this.html = page.build().toHtml();
+        return html = page.build().toHtml();
       });
       it('should include 36 labels', function() {
         var labelCount;
-        labelCount = this.html.find('.label').length;
+        labelCount = html.find('.label').length;
         return expect(labelCount).toBe(36);
       });
-      return it('should have page class', function() {
-        var klass;
-        klass = this.html.attr('class');
-        return expect(klass).toBe('page');
+      return it('should have page html class', function() {
+        return expect(html.attr('class')).toBe('page');
       });
     });
   });

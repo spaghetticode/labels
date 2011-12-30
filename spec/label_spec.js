@@ -59,21 +59,21 @@
         return expect(Label["new"](opts)).toEqual(new Label(opts));
       });
     });
-    describe('toHtml()', function() {
+    return describe('toHtml()', function() {
+      var html;
+      html = null;
       beforeEach(function() {
-        return this.html = label.toHtml().html();
+        return html = label.toHtml().html();
+      });
+      it('should set the wrapped element id as expected', function() {
+        return expect(label.html.attr('id')).toBe(label.id);
       });
       it('should include a p with code', function() {
-        var html;
-        html = '<p class="code">A-01-C-12-17</p>';
-        return expect(this.html).toInclude(html);
+        return expect(html).toInclude('<p class="code">A-01-C-12-17</p>');
       });
       return it('should include a p with description', function() {
-        var html;
-        html = '<p class="desc"><span>File</span></p>';
-        return expect(this.html).toInclude(html);
+        return expect(html).toInclude('<p class="desc"><span>File</span></p>');
       });
     });
-    return describe('initDescEdit()', function() {});
   });
 }).call(this);

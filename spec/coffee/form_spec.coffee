@@ -28,8 +28,8 @@ describe 'Form', ->
 
   describe 'when today is 20 december 2011', ->
     beforeEach ->
-      form.today = -> new Date('20 Dec 2011')
-      form.thisYear = form.getYear()
+      spyOn(form, 'today').andReturn(new Date('20 Dec 2011'))
+      form.thisYear  = form.getYear()
       form.nextMonth = form.getNextMonth()
 
     it 'getYear should be 2011', ->
@@ -67,7 +67,7 @@ describe 'Form', ->
 
   describe 'when today is 10 January 2012', ->
     beforeEach ->
-      form.today = -> new Date('10 Jan 2012')
+      spyOn(form, 'today').andReturn(new Date('10 Jan 2012'))
       form.thisYear = form.getYear()
       form.nextMonth = form.getNextMonth()
 
@@ -122,6 +122,13 @@ describe 'Form', ->
     it 'should have 1 as page number', ->
       form.updateButton()
       expect(form.submitButton.val()).toInclude '1'
+
+  describe 'init()', ->
+    it 'should call expected methods', ->
+      ['buildYearOptions', 'buildMonthOptions', 'updateButton', 'initFields', 'initSubmit', 'initReset'].each (method) ->
+        spyOn(form, method)
+        form.init()
+        expect(form[method]).toHaveBeenCalled()
 
   describe 'submitting a valid page', ->
     beforeEach ->

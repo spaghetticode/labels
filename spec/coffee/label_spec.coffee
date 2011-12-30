@@ -58,16 +58,16 @@ describe 'Label', ->
       expect(Label.new(opts)).toEqual new Label(opts)
 
   describe 'toHtml()', ->
+    html = null
+
     beforeEach ->
-      @html = label.toHtml().html()
+      html = label.toHtml().html()
+
+    it 'should set the wrapped element id as expected', ->
+      expect(label.html.attr('id')).toBe label.id
 
     it 'should include a p with code', ->
-      html = '<p class="code">A-01-C-12-17</p>'
-      expect(@html).toInclude html
+      expect(html).toInclude '<p class="code">A-01-C-12-17</p>'
 
     it 'should include a p with description', ->
-      html = '<p class="desc"><span>File</span></p>'
-      expect(@html).toInclude html
-
-  describe 'initDescEdit()', ->
-    # to be tested
+      expect(html).toInclude '<p class="desc"><span>File</span></p>'
