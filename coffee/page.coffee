@@ -35,13 +35,12 @@ class Page
     @
 
   optsFor: (n) ->
-    opts =
-      id:       n
-      year:     @year.toLowerCase()
-      month:    @month
-      designer: @designer.toLowerCase()
-      desc:     @defaultDesc
-      count:    @startCount + n
+    id:       n
+    year:     @year.toLowerCase()
+    month:    @month
+    designer: @designer.toLowerCase()
+    desc:     @defaultDesc
+    count:    @startCount + n
 
   toHtml: ->
     @html = $('<div class="page"></div>')

@@ -32,10 +32,8 @@
       if ((this.regexp && !value.has(this.regexp)) || (this.range && this.range.indexOf(value) < 0)) {
         this.errors.push("" + name + " non è valido");
       }
-      if (this.min || this.max) {
-        if (isNaN(Number(value))) {
-          this.errors.push("" + name + " deve essere un numero");
-        }
+      if (isNaN(Number(value)) && (this.min || this.max)) {
+        this.errors.push("" + name + " deve essere un numero");
       }
       if (this.min && Number(value) < this.min) {
         this.errors.push("" + name + " deve essere maggiore di " + (this.min - 1));

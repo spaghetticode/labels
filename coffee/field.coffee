@@ -26,9 +26,8 @@ class Field
   validate: (value, name) ->
     if (@regexp and !value.has(@regexp)) or (@range and @range.indexOf(value) < 0)
       @errors.push "#{name} non è valido"
-    if @min or @max
-      if isNaN(Number(value))
-        @errors.push "#{name} deve essere un numero"
+    if isNaN(Number(value)) and (@min or @max)
+      @errors.push "#{name} deve essere un numero"
     if @min and Number(value) < @min
       @errors.push "#{name} deve essere maggiore di #{@min-1}"
     if @max and Number(value) > @max

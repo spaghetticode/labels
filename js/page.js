@@ -46,8 +46,7 @@
       return this;
     };
     Page.prototype.optsFor = function(n) {
-      var opts;
-      return opts = {
+      return {
         id: n,
         year: this.year.toLowerCase(),
         month: this.month,
