@@ -14,8 +14,8 @@ describe 'Field', ->
     field.name  = -> 'Whatever'
 
   it 'should set attributes', ->
-    ['id', 'regexp', 'min', 'max', 'range'].each ->
-      expect(field[this]).toEqual opts[this]
+    ['id', 'regexp', 'min', 'max', 'range'].each (name) ->
+      expect(field[name]).toEqual opts[name]
 
   describe 'when all attributes are valid', ->
     beforeEach ->

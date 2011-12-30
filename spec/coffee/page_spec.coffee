@@ -54,3 +54,15 @@ describe 'Page', ->
 
     it 'should have expected count', ->
       expect(page.optsFor(3).count).toEqual 4
+
+  describe 'toHtml()', ->
+    beforeEach ->
+      @html = page.build().toHtml()
+
+    it 'should include 36 labels', ->
+      labelCount = @html.find('.label').length
+      expect(labelCount).toEqual 36
+
+    it 'should have page class', ->
+      klass = @html.attr('class')
+      expect(klass).toEqual 'page'

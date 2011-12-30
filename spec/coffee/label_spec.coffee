@@ -15,8 +15,8 @@ describe 'Label', ->
     label = new Label(opts)
 
   it 'should set attributes', ->
-    ['id', 'year', 'month', 'designer', 'count', 'desc'].each ->
-      expect(label[this]).toEqual opts[this]
+    ['id', 'year', 'month', 'designer', 'count', 'desc'].each (attribute) ->
+      expect(label[attribute]).toEqual opts[attribute]
 
   it 'should not matter if month and count are strings', ->
     opts.month = '1'
@@ -53,8 +53,21 @@ describe 'Label', ->
   it 'should have expected code', ->
     expect(label.code()).toEqual 'A-01-C-12-17'
 
-  describe 'Label.new', ->
+  describe 'Label.new()', ->
     it 'should create a new label', ->
       expect(Label.new(opts)).toEqual new Label(opts)
 
-  # TODO test events and jquery/interface stuff
+  describe 'toHtml()', ->
+    beforeEach ->
+      @html = label.toHtml().html()
+
+    it 'should include a p with code', ->
+      html = '<p class="code">A-01-C-12-17</p>'
+      expect(@html).toContain html
+
+    it 'should include a p with description', ->
+      html = '<p class="desc"><span>File</span></p>'
+      expect(@html).toContain html
+
+  describe 'initDescEdit()', ->
+    # to be tested

@@ -40,7 +40,7 @@
         return expect(page.build().labels.length).toEqual(36);
       });
     });
-    return describe('optsFor()', function() {
+    describe('optsFor()', function() {
       beforeEach(function() {
         return page.build().show();
       });
@@ -55,6 +55,21 @@
       });
       return it('should have expected count', function() {
         return expect(page.optsFor(3).count).toEqual(4);
+      });
+    });
+    return describe('toHtml()', function() {
+      beforeEach(function() {
+        return this.html = page.build().toHtml();
+      });
+      it('should include 36 labels', function() {
+        var labelCount;
+        labelCount = this.html.find('.label').length;
+        return expect(labelCount).toEqual(36);
+      });
+      return it('should have page class', function() {
+        var klass;
+        klass = this.html.attr('class');
+        return expect(klass).toEqual('page');
       });
     });
   });

@@ -15,8 +15,8 @@
       return label = new Label(opts);
     });
     it('should set attributes', function() {
-      return ['id', 'year', 'month', 'designer', 'count', 'desc'].each(function() {
-        return expect(label[this]).toEqual(opts[this]);
+      return ['id', 'year', 'month', 'designer', 'count', 'desc'].each(function(attribute) {
+        return expect(label[attribute]).toEqual(opts[attribute]);
       });
     });
     it('should not matter if month and count are strings', function() {
@@ -54,10 +54,26 @@
     it('should have expected code', function() {
       return expect(label.code()).toEqual('A-01-C-12-17');
     });
-    return describe('Label.new', function() {
+    describe('Label.new()', function() {
       return it('should create a new label', function() {
         return expect(Label["new"](opts)).toEqual(new Label(opts));
       });
     });
+    describe('toHtml()', function() {
+      beforeEach(function() {
+        return this.html = label.toHtml().html();
+      });
+      it('should include a p with code', function() {
+        var html;
+        html = '<p class="code">A-01-C-12-17</p>';
+        return expect(this.html).toContain(html);
+      });
+      return it('should include a p with description', function() {
+        var html;
+        html = '<p class="desc"><span>File</span></p>';
+        return expect(this.html).toContain(html);
+      });
+    });
+    return describe('initDescEdit()', function() {});
   });
 }).call(this);
