@@ -28,7 +28,7 @@
     Label.prototype.initDescEdit = function() {
       this.editable.blur(function() {
         return $(this).prop({
-          contentEditable: false
+          contentEditable: 'inherit'
         });
       });
       this.editable.click(function() {

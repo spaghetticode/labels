@@ -20,7 +20,7 @@ class Label
     @html.append(code).append(desc).attr(id: @id)
 
   initDescEdit: ->
-    @editable.blur  -> $(@).prop(contentEditable: false)
+    @editable.blur  -> $(@).prop(contentEditable: 'inherit')
     @editable.click -> $(@).prop(contentEditable: true).focus()
     @editable.keypress (event) -> @blur() if event.keyCode is 13
 
