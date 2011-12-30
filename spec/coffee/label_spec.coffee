@@ -63,11 +63,11 @@ describe 'Label', ->
 
     it 'should include a p with code', ->
       html = '<p class="code">A-01-C-12-17</p>'
-      expect(@html).toContain html
+      expect(@html).toInclude html
 
     it 'should include a p with description', ->
       html = '<p class="desc"><span>File</span></p>'
-      expect(@html).toContain html
+      expect(@html).toInclude html
 
   describe 'initDescEdit()', ->
     # to be tested

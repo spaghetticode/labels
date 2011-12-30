@@ -66,12 +66,12 @@
       it('should include a p with code', function() {
         var html;
         html = '<p class="code">A-01-C-12-17</p>';
-        return expect(this.html).toContain(html);
+        return expect(this.html).toInclude(html);
       });
       return it('should include a p with description', function() {
         var html;
         html = '<p class="desc"><span>File</span></p>';
-        return expect(this.html).toContain(html);
+        return expect(this.html).toInclude(html);
       });
     });
     return describe('initDescEdit()', function() {});
