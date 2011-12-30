@@ -17,7 +17,7 @@
     });
     it('should set attributes', function() {
       return ['id', 'regexp', 'min', 'max', 'range'].each(function(name) {
-        return expect(field[name]).toEqual(opts[name]);
+        return expect(field[name]).toBe(opts[name]);
       });
     });
     describe('when all attributes are valid', function() {

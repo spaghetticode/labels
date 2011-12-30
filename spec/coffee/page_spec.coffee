@@ -9,16 +9,16 @@ describe 'Page', ->
     page = new Page()
 
   it 'month should have expected value', ->
-    expect(page.month).toEqual 3
+    expect(page.month).toBe 3
 
   it 'should have no label', ->
     expect(page.labels).toBeEmpty()
 
   it 'startCount should be 1', ->
-    expect(page.startCount).toEqual 1
+    expect(page.startCount).toBe 1
 
   it 'Page.count() should be zero', ->
-    expect(Page.count()).toEqual 0
+    expect(Page.count()).toBe 0
 
   describe 'when a page is already shown', ->
     beforeEach ->
@@ -28,32 +28,32 @@ describe 'Page', ->
       expect(page.labels).not.toBeEmpty()
 
     it 'Page.count() should be 1', ->
-      expect(Page.count()).toEqual 1
+      expect(Page.count()).toBe 1
 
     it 'startCount should be 37', ->
       page = Page.show()
-      expect(page.startCount).toEqual 37
+      expect(page.startCount).toBe 37
 
   describe 'build()', ->
     it 'should create labels', ->
-      expect(page.labels.length).toEqual 0
-      expect(page.build().labels.length).toEqual 36
+      expect(page.labels.length).toBe 0
+      expect(page.build().labels.length).toBe 36
 
   describe 'optsFor()', ->
     beforeEach ->
       page.build().show()
 
     it 'should have expected id', ->
-      expect(page.optsFor(3).id).toEqual 3
+      expect(page.optsFor(3).id).toBe 3
 
     it 'should lowercase year', ->
-      expect(page.optsFor(1).year).toEqual 'a'
+      expect(page.optsFor(1).year).toBe 'a'
 
     it 'should lowercase designer', ->
-      expect(page.optsFor(1).designer).toEqual 'c'
+      expect(page.optsFor(1).designer).toBe 'c'
 
     it 'should have expected count', ->
-      expect(page.optsFor(3).count).toEqual 4
+      expect(page.optsFor(3).count).toBe 4
 
   describe 'toHtml()', ->
     beforeEach ->
@@ -61,8 +61,8 @@ describe 'Page', ->
 
     it 'should include 36 labels', ->
       labelCount = @html.find('.label').length
-      expect(labelCount).toEqual 36
+      expect(labelCount).toBe 36
 
     it 'should have page class', ->
       klass = @html.attr('class')
-      expect(klass).toEqual 'page'
+      expect(klass).toBe 'page'

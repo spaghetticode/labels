@@ -16,43 +16,43 @@
     });
     it('should set attributes', function() {
       return ['id', 'year', 'month', 'designer', 'count', 'desc'].each(function(attribute) {
-        return expect(label[attribute]).toEqual(opts[attribute]);
+        return expect(label[attribute]).toBe(opts[attribute]);
       });
     });
     it('should not matter if month and count are strings', function() {
       opts.month = '1';
       opts.count = '12';
-      return expect(Label["new"](opts).controlCode).toEqual(label.controlCode);
+      return expect(Label["new"](opts).controlCode).toBe(label.controlCode);
     });
     it('should calculate control code', function() {
       return expect(label.controlCode).toBeTruthy();
     });
     it('should have expected controlCode', function() {
-      return expect(label.controlCode).toEqual(17);
+      return expect(label.controlCode).toBe(17);
     });
     it('should have expected designerNumber', function() {
-      return expect(label.designerNumber()).toEqual(3);
+      return expect(label.designerNumber()).toBe(3);
     });
     it('should have expected yearNumber', function() {
-      return expect(label.yearNumber()).toEqual(1);
+      return expect(label.yearNumber()).toBe(1);
     });
     it('should have expected formattedDesigner', function() {
-      return expect(label.formattedDesigner()).toEqual('C');
+      return expect(label.formattedDesigner()).toBe('C');
     });
     it('should have expected formattedYear', function() {
-      return expect(label.formattedYear()).toEqual('A');
+      return expect(label.formattedYear()).toBe('A');
     });
     it('should have expected formattedMonth', function() {
-      return expect(label.formattedMonth()).toEqual('01');
+      return expect(label.formattedMonth()).toBe('01');
     });
     it('should have expected yearNumber', function() {
-      return expect(label.yearNumber()).toEqual(1);
+      return expect(label.yearNumber()).toBe(1);
     });
     it('should have expected designerNumber', function() {
-      return expect(label.designerNumber()).toEqual(3);
+      return expect(label.designerNumber()).toBe(3);
     });
     it('should have expected code', function() {
-      return expect(label.code()).toEqual('A-01-C-12-17');
+      return expect(label.code()).toBe('A-01-C-12-17');
     });
     describe('Label.new()', function() {
       return it('should create a new label', function() {
