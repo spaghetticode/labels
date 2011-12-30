@@ -82,12 +82,15 @@ class Form
     if @nextMonth isnt 0 then @thisYear else @thisYear + 1
 
   getNextMonth: ->
-    current = new Date().getMonth()
+    current = @today().getMonth()
     next = if current is 11 then 0 else current + 1
     Number(next)
 
   getYear: ->
-    index = if $.browser.msie then 5 else 3
-    Number(new Date().toString().split(' ')[index])
+    # toUTCString has a consistent output format on all browser
+    Number(@today().toUTCString().split(' ')[3])
+
+  today: ->
+    new Date()
 
 window.Form = Form

@@ -138,14 +138,15 @@
     };
     Form.prototype.getNextMonth = function() {
       var current, next;
-      current = new Date().getMonth();
+      current = this.today().getMonth();
       next = current === 11 ? 0 : current + 1;
       return Number(next);
     };
     Form.prototype.getYear = function() {
-      var index;
-      index = $.browser.msie ? 5 : 3;
-      return Number(new Date().toString().split(' ')[index]);
+      return Number(this.today().toUTCString().split(' ')[3]);
+    };
+    Form.prototype.today = function() {
+      return new Date();
     };
     return Form;
   })();
