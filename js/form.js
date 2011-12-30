@@ -33,6 +33,7 @@
       this.element = $('form');
       this.thisYear = this.getYear();
       this.nextMonth = this.getNextMonth();
+      this.submitButton = this.element.find('[type=submit]');
     }
     Form.prototype.isValid = function() {
       var field, _i, _len, _ref;
@@ -57,7 +58,8 @@
       this.updateButton();
       this.initFields();
       this.initSubmit();
-      return this.initReset();
+      this.initReset();
+      return this;
     };
     Form.prototype.initFields = function() {
       var attributes, _i, _len, _ref, _results;
@@ -87,10 +89,9 @@
       }, this));
     };
     Form.prototype.updateButton = function() {
-      var submit, text;
-      submit = this.element.find('[type=submit]');
-      text = "" + (submit.val().remove(/\d+/)) + (Page.count() + 1);
-      return submit.val(text);
+      var text;
+      text = "" + (this.submitButton.val().remove(/\d+/)) + (Page.count() + 1);
+      return this.submitButton.val(text);
     };
     Form.prototype.buildYearOptions = function() {
       var index, letter, option, year, _i, _len, _ref, _results;

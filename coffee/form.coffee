@@ -20,6 +20,7 @@ class Form
     @element   = $('form')
     @thisYear  = @getYear()
     @nextMonth = @getNextMonth()
+    @submitButton = @element.find('[type=submit]')
 
   isValid: ->
     @errors = []
@@ -37,6 +38,7 @@ class Form
     @initFields()
     @initSubmit()
     @initReset()
+    @
 
   initFields: ->
     for attributes in Form.fields
@@ -49,7 +51,7 @@ class Form
         Page.show()
         @updateButton()
       else
-        alert(@errors.join('\n'))
+        alert @errors.join('\n')
 
   initReset: ->
     @element.find('.reset-field').change =>
@@ -57,9 +59,8 @@ class Form
       @updateButton()
 
   updateButton: ->
-    submit = @element.find('[type=submit]')
-    text = "#{submit.val().remove(/\d+/)}#{Page.count() + 1}"
-    submit.val(text)
+    text = "#{@submitButton.val().remove(/\d+/)}#{Page.count() + 1}"
+    @submitButton.val(text)
 
   buildYearOptions: ->
     year = 2009
