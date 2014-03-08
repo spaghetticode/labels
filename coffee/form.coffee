@@ -21,6 +21,8 @@ class Form
     @thisYear  = @getYear()
     @nextMonth = @getNextMonth()
     @submitButton = @element.find('[type=submit]')
+    @labelHeight  = @element.find('#label_height')
+    @styles       = $('#print_styles')
 
   isValid: ->
     @errors = []
@@ -38,6 +40,8 @@ class Form
     @initFields()
     @initSubmit()
     @initReset()
+    @initLabelHeight()
+    @setPrintStyles()
     @
 
   initFields: ->
@@ -91,7 +95,19 @@ class Form
     # toUTCString has a consistent output format on all browser
     Number(@today().toUTCString().split(' ')[3])
 
-  today: ->
-    new Date()
+  today: -> new Date()
+
+  initLabelHeight: ->
+    @setLabelheightFromLocalStorage()
+    @labelHeight.change (event) =>
+      localStorage.setItem 'labels.label_height', @labelHeight.val()
+      @setPrintStyles()
+
+  setLabelheightFromLocalStorage: ->
+    val = String localStorage.getItem('labels.label_height')
+    if val is 'null' or val is 'undefined' then val = 70
+    @labelHeight.val val
+
+  setPrintStyles: -> @styles.text "div.label { height: #{@labelHeight.val()}pt; }"
 
 window.Form = Form

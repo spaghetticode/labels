@@ -14,6 +14,7 @@ class Page
     @defaultDesc  = $('#default_desc').val()
     @month        = Number $('#month').val()
     @startCount   = @getStartCount()
+    @labelHeight  = $('#label_height').val()
 
   show: ->
     $('body').append @toHtml()
