@@ -30,6 +30,11 @@ div.label {
   text-align: center;
 }
 
+div.label:last-child, div.label:nth-child(35), div.label:nth-child(34) {
+  margin-bottom: 0px;
+}
+
+
 .code {
   text-transform: uppercase;
 }
