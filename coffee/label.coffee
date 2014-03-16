@@ -2,7 +2,7 @@ class Label
   @new = (opts) -> new @(opts)
 
   constructor: (opts) ->
-    @id          = opts.id + (opts.pageCount * Page.rowsCount * Page.labelsPerRow)
+    @id          = 1 + opts.id + (opts.pageCount * @perPage())
     @year        = opts.year
     @month       = Number(opts.month)
     @designer    = opts.designer
@@ -10,6 +10,8 @@ class Label
     @desc        = opts.desc
     @controlCode = @getControlCode()
     @pageCount   = Number(opts.pageCount)
+
+  perPage: -> Page.rowsCount * Page.labelsPerRow
 
   toHtml: ->
     @html = $('<div class="label"></div>')

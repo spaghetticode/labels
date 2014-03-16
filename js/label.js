@@ -8,7 +8,7 @@
     };
 
     function Label(opts) {
-      this.id = opts.id + (opts.pageCount * Page.rowsCount * Page.labelsPerRow);
+      this.id = 1 + opts.id + (opts.pageCount * this.perPage());
       this.year = opts.year;
       this.month = Number(opts.month);
       this.designer = opts.designer;
@@ -18,6 +18,10 @@
       this.pageCount = Number(opts.pageCount);
     }
 
+    Label.prototype.perPage = function() {
+      return Page.rowsCount * Page.labelsPerRow;
+    };
+
     Label.prototype.toHtml = function() {
       var code, desc;
       this.html = $('<div class="label"></div>');
@@ -26,6 +30,9 @@
       this.editable = $("<span>" + this.desc + "</span>");
       code.text(this.code());
       desc.append(this.editable);
+      if (this.id % this.perPage() === 0) {
+        this.html.addClass('last');
+      }
       return this.html.append(code).append(desc).attr({
         id: this.id
       });
