@@ -18,7 +18,7 @@ form {
   margin: 0;
   padding: 0;
   width: 100%;
-  /* overflow: auto; firefox doesn't like this */
+  overflow: auto;
   page-break-after: always;
 }
 
@@ -29,7 +29,6 @@ div.label {
   overflow: hidden;
   text-align: center;
 }
-
 
 .code {
   text-transform: uppercase;
