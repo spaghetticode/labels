@@ -1,13 +1,17 @@
 class Page
+  @rowsCount    = 12
+  @labelsPerRow = 3
+
   @show = ->
     new @().build().show()
 
   @count = ->
     $('.page').length
 
+
   constructor: ->
-    @labelsPerRow = 3
-    @rowsCount    = 12
+    @labelsPerRow = @constructor.labelsPerRow
+    @rowsCount    = @constructor.rowsCount
     @labels       = []
     @year         = $('#year').val()
     @designer     = $('#designer').val()
@@ -36,12 +40,13 @@ class Page
     @
 
   optsFor: (n) ->
-    id:       n
-    year:     @year.toLowerCase()
-    month:    @month
-    designer: @designer.toLowerCase()
-    desc:     @defaultDesc
-    count:    @startCount + n
+    id:        n
+    year:      @year.toLowerCase()
+    month:     @month
+    designer:  @designer.toLowerCase()
+    desc:      @defaultDesc
+    count:     @startCount + n
+    pageCount: Page.count()
 
   toHtml: ->
     @html = $('<div class="page"></div>')

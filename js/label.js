@@ -8,13 +8,14 @@
     };
 
     function Label(opts) {
-      this.id = opts.id;
+      this.id = opts.id + (opts.pageCount * Page.rowsCount * Page.labelsPerRow);
       this.year = opts.year;
       this.month = Number(opts.month);
       this.designer = opts.designer;
       this.count = Number(opts.count);
       this.desc = opts.desc;
       this.controlCode = this.getControlCode();
+      this.pageCount = Number(opts.pageCount);
     }
 
     Label.prototype.toHtml = function() {

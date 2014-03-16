@@ -3,6 +3,10 @@
   var Page;
 
   Page = (function() {
+    Page.rowsCount = 12;
+
+    Page.labelsPerRow = 3;
+
     Page.show = function() {
       return new this().build().show();
     };
@@ -12,8 +16,8 @@
     };
 
     function Page() {
-      this.labelsPerRow = 3;
-      this.rowsCount = 12;
+      this.labelsPerRow = this.constructor.labelsPerRow;
+      this.rowsCount = this.constructor.rowsCount;
       this.labels = [];
       this.year = $('#year').val();
       this.designer = $('#designer').val();
@@ -61,7 +65,8 @@
         month: this.month,
         designer: this.designer.toLowerCase(),
         desc: this.defaultDesc,
-        count: this.startCount + n
+        count: this.startCount + n,
+        pageCount: Page.count()
       };
     };
 
