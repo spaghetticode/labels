@@ -18,7 +18,7 @@ form {
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow: auto;
+  /* overflow: auto; firefox doesn't like this */
   page-break-after: always;
 }
 
@@ -28,10 +28,6 @@ div.label {
   float: left;
   overflow: hidden;
   text-align: center;
-}
-
-div.label:last-child, div.label:nth-child(35), div.label:nth-child(34) {
-  margin-bottom: 0px;
 }
 
 
