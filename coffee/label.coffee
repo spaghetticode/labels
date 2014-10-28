@@ -36,7 +36,11 @@ class Label
     @yearNumber() + @month + @designerNumber() + @count
 
   designerNumber: ->
-    Form.letters.indexOf(@designer) + 1
+    letters = @designer.split('')
+    total = 0
+    for letter in letters
+      total += Form.letters.indexOf(letter) + 1
+    total
 
   yearNumber: ->
     Form.letters.indexOf(@year) + 1
